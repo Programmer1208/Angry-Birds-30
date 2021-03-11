@@ -9,8 +9,8 @@ constructor(x,y,w,h)
 display()
 {
     super.display();
-    this.bodies.position.x=mouseX;
-    this.bodies.position.y=mouseY;
+   // this.bodies.position.x=mouseX;
+   // this.bodies.position.y=mouseY;
 }
 
 

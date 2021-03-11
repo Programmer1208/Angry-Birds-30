@@ -12,15 +12,58 @@ class Slingshot
     this.pointB=point;
      this.slng=Matter.Constraint.create(op);
      World.add(world,this.slng);
-
+     this.img1= loadImage("sprites/sling1.png");
+     this.img2= loadImage("sprites/sling2.png");
+     this.img3= loadImage("sprites/sling3.png");
     }
 
     display()
     {
+        image(this.img1,200,100);
+        image(this.img2,170,93);
+
         push(); 
-        strokeWeight(6);
-        line(bird.bodies.position.x,bird.bodies.position.y,this.pointB.x,this.pointB.y);
+        if(this.slng.bodyA != null)
+        {
+    
+        var pointA = this.slng.bodyA.position;
+        var pointB = this.pointB;
+        strokeWeight(8);
+        stroke(48,22,8);
+        if(pointA.x<=220)
+        {
+            line(pointA.x,pointA.y,pointB.x-20,pointB.y);
+            line(pointA.x,pointA.y,pointB.x+30,pointB.y)
+            image(this.img3,pointA.x-25,pointA.y-15,10,30);
+
+        }
+        else
+        {
+        line(pointA.x,pointA.y,pointB.x+20,pointB.y);
+        line(pointA.x,pointA.y,pointB.x-30,pointB.y)
+        image(this.img3,pointA.x-5,pointA.y-15,10,30);
+
+        }
         pop();
+        }
     }
+
+    fly()
+    {
+
+        this.slng.bodyA=null;
+    }
+
+    attach(body1)
+    {
+
+
+        this.slng.bodyA=body1;
+
+
+
+    }
+
+
 
 }

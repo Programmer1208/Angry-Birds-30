@@ -29,7 +29,7 @@ function setup()
      bodies=Bodies.circle(100,100,50,{isStatic:true});
      World.add(world,bodies);
 
-    bird=new Bird(100,100,50,50);
+    bird=new Bird(100,50,50,50);
     box=new Box(700,310,70,70);
     pig=new Pig(810,330,50,50);
     box1=new Box(920,310,70,70);
@@ -46,11 +46,12 @@ function setup()
 
     //consLog=new Log(100,300,100,PI/2);
 
-    slingshot=new Slingshot(bird.bodies,{x:200,y:200});
+    slingshot=new Slingshot(bird.bodies,{x:200,y:130});
     
     ground=new Ground(600,380,1200,50);
     ground1=new Ground(200,380,400,300);
-   
+    
+    //console.log(pig);
 };
 
 function draw()
@@ -58,8 +59,8 @@ function draw()
 background(bg);
 Engine.update(engine);
 
-ellipseMode(CENTER);
-ellipse(bodies.position.x,bodies.position.y,200,200);
+//ellipseMode(CENTER);
+//ellipse(bodies.position.x,bodies.position.y,200,200);
 bird.display();
 box.display();
 box1.display();
@@ -76,4 +77,36 @@ log3.display();
 log4.display();
 //consLog.display();
 slingshot.display();
+}
+
+
+function mouseDragged()
+{
+    Matter.Body.setPosition(bird.bodies,{x:mouseX, y:mouseY});
+}
+
+function mouseReleased()
+{
+    slingshot.fly();
+
+
+
+
+}
+
+function keyPressed()
+{
+
+if(keyCode === 32)
+{
+slingshot.attach(bird.bodies);
+
+
+}
+
+
+
+
+
+
 }
